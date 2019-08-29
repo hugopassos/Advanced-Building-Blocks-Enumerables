@@ -78,3 +78,7 @@ module Enumerable
     sum
   end
 end
+
+def multiply_els(array)
+  return array.my_inject(1){|x, y| x * y}
+end
