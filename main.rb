@@ -52,4 +52,14 @@ module Enumerable
     end
     all_false
   end
+
+  def my_count
+    return count unless block_given?
+    count = 0
+    for i in 1..self.length
+      yield 1
+      count += 1
+    end
+    count
+  end
 end
