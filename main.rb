@@ -62,4 +62,12 @@ module Enumerable
     end
     count
   end
+
+  def my_map
+    array = []
+    for i in self
+      array << yield(i)
+    end
+    array
+  end
 end
