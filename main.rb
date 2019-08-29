@@ -22,4 +22,24 @@ module Enumerable
     end
     array
   end
+
+  def my_all?
+    all_true = true
+    for i in self
+      if !yield(i)
+        all_true = false
+      end
+    end
+    all_true
+  end
+
+  def my_any?
+    any_true = false
+    for i in self
+      if yield(i)
+        any_true = true
+      end
+    end
+    any_true
+  end
 end
