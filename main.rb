@@ -13,6 +13,7 @@ module Enumerable
     i = 0
     while i < length
       yield i, self[i]
+      i += 1
     end
   end
 
@@ -30,9 +31,7 @@ module Enumerable
     all_true = true
     i = 0
     while i < length
-      unless yield(self[i])
-        all_true = false
-      end
+      all_true = false unless yield(self[i])
       i += 1
     end
     all_true
@@ -81,7 +80,7 @@ module Enumerable
     array
   end
 
-  def my_inject(sum=0)
+  def my_inject(sum = 0)
     i = 0
     while i < length
       sum = yield(sum, self[i])
@@ -92,5 +91,5 @@ module Enumerable
 end
 
 def multiply_els(array)
-  array.my_inject(1){|x, y| x * y}
+  array.my_inject(1){ | x, y | x * y }
 end
