@@ -42,4 +42,14 @@ module Enumerable
     end
     any_true
   end
+
+  def my_none?
+    all_false = true
+    for i in self
+      if yield(i)
+        all_false = false
+      end
+    end
+    all_false
+  end
 end
