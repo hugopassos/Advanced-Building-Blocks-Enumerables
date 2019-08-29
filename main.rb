@@ -70,4 +70,11 @@ module Enumerable
     end
     array
   end
+
+  def my_inject(sum=0)
+    for i in self
+      sum = yield(sum, i)
+    end
+    sum
+  end
 end
