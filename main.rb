@@ -2,53 +2,64 @@
 
 module Enumerable
   def my_each
-    for i in 0...self.length
+    i = 0
+    while i < self.length do
       yield self[i]
+      i += 1
     end
   end
 
   def my_each_with_index
-    for i in 0...self.length
+    i = 0
+    while i < self.length do
       yield i, self[i]
     end
   end
 
   def my_select
     array = []
-    for i in self
-      if yield(i)
-        array << i
+    i = 0
+    while i < self.length do
+      if yield(self[i])
+        array << self[i]
       end
+      i += 1
     end
     array
   end
 
   def my_all?
     all_true = true
-    for i in self
-      if !yield(i)
+    i = 0
+    while i < self.length do
+      if !yield(self[i])
         all_true = false
       end
+      i += 1
     end
     all_true
   end
 
   def my_any?
     any_true = false
-    for i in self
-      if yield(i)
+    i = 0
+    while i < self.length do
+      if yield(self[i])
         any_true = true
       end
+      i += 1
     end
     any_true
   end
 
   def my_none?
     all_false = true
-    for i in self
-      if yield(i)
+    i = 0
+    while i < self.length do
+      if yield(self[i])
         all_false = false
       end
+      i += 1
     end
     all_false
   end
@@ -56,24 +67,30 @@ module Enumerable
   def my_count
     return count unless block_given?
     count = 0
-    for i in 1..self.length
+    i = 1
+    while i <= self.length do
       yield 1
       count += 1
+      i += 1
     end
     count
   end
 
   def my_map
     array = []
-    for i in self
-      array << yield(i)
+    i = 0
+    while i < self.length do
+      array << yield(self[i])
+      i += 1
     end
     array
   end
 
   def my_inject(sum=0)
-    for i in self
-      sum = yield(sum, i)
+    i = 0
+    while i < self.length do
+      sum = yield(sum, self[i])
+      i += 1
     end
     sum
   end
