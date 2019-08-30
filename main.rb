@@ -57,15 +57,24 @@ module Enumerable
     all_false
   end
 
-  def my_count
-    return count unless block_given?
-
-    count = 0
+  def my_count(value = nil)
     i = 0
-    while i < length
-      yield self[i]
-      count += 1
-      i += 1
+    count = 0
+    if block_given?
+      while i < length
+        count += 1 if yield self[i]
+        i += 1
+      end
+    elsif value != nil
+      while i < length
+        count += 1 if self[i] == value
+        i += 1
+      end
+    else
+      while i < length
+        count += 1
+        i += 1
+      end
     end
     count
   end
