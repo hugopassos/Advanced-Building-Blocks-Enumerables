@@ -65,7 +65,9 @@ module Enumerable
         count += 1 if yield self[i]
         i += 1
       end
-    elsif value != nil
+      count
+    end
+    if !value.nil?
       while i < length
         count += 1 if self[i] == value
         i += 1
