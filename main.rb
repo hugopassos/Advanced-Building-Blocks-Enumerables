@@ -57,28 +57,16 @@ module Enumerable
     all_false
   end
 
-  def my_count(value = nil)
-    i = 0
-    count = 0
-    if block_given?
-      while i < length
-        count += 1 if yield self[i]
-        i += 1
-      end
-      count
-    end
-    if !value.nil?
-      while i < length
-        count += 1 if self[i] == value
-        i += 1
-      end
+  def my_count(val = nil, &block)
+    result = 0
+    if block && !val
+      my_each { |x| result += 1 if yield(x) }
+    elsif !val
+      my_each { result += 1 }
     else
-      while i < length
-        count += 1
-        i += 1
-      end
+      my_each { |x| result += 1 if val == x }
     end
-    count
+    result
   end
 
   def my_map
