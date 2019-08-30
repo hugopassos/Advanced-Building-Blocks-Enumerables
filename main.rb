@@ -61,9 +61,9 @@ module Enumerable
     return count unless block_given?
 
     count = 0
-    i = 1
-    while i <= length
-      yield 1
+    i = 0
+    while i < length
+      yield self[i]
       count += 1
       i += 1
     end
