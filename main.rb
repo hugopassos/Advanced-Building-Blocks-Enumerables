@@ -58,14 +58,13 @@ module Enumerable
   end
 
   def my_count(value = nil)
-    i = 0
     count = 0
     if block_given?
-      my_each{ |x| count += 1 if yield(x) }
-    elsif value != nil
-      my_each{ |x| count += 1 if value == x }
+      my_each { |x| count += 1 if yield(x) }
+    elsif !value.nil?
+      my_each { |x| count += 1 if value == x }
     else
-      my_each{ count += 1 }
+      my_each { count += 1 }
     end
     count
   end
